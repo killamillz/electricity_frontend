@@ -25,3 +25,9 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
 
 /** ISO date-time → "14 Oct 2026" */
 export const formatDate = (iso: string) => dateFormat.format(new Date(iso));
+
+/** "12345678901234567890" → "1234 5678 9012 3456 7890" */
+export const formatToken = (token: string) => token.replace(/\D/g, "").replace(/(\d{4})(?=\d)/g, "$1 ");
+
+/** 96.4 → "96.4 kWh" */
+export const formatKwh = (kwh: number) => `${Number(kwh.toFixed(2))} kWh`;

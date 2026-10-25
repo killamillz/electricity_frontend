@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { formatDate, formatNaira } from "@/lib/format";
-import { cn } from "@/lib/utils";
+import { SegmentedControl } from "@/components/form/SegmentedControl";
 
 const filters = [
   { value: "all", label: "Everyone" },
@@ -109,23 +109,7 @@ export default function AdminUsersPage() {
                 className="h-10 rounded-xl bg-card pl-9"
               />
             </div>
-            <div role="radiogroup" aria-label="Filter people" className="flex gap-1 rounded-xl bg-muted p-1">
-              {filters.map(({ value, label }) => (
-                <button
-                  key={value}
-                  type="button"
-                  role="radio"
-                  aria-checked={filter === value}
-                  onClick={() => setFilter(value)}
-                  className={cn(
-                    "flex-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors sm:flex-none",
-                    filter === value ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
-                  )}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+            <SegmentedControl label="Filter people" options={filters} value={filter} onChange={setFilter} />
           </div>
 
           {users.isPending ? (

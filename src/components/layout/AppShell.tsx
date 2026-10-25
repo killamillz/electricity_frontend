@@ -1,7 +1,8 @@
 import { NavLink, Outlet } from "react-router";
-import { LayoutDashboard, LogOut, Users, type LucideIcon } from "lucide-react";
+import { CalendarRange, LayoutDashboard, LogOut, Receipt, Trophy, Users, type LucideIcon } from "lucide-react";
 import { displayName, useAuth } from "@/auth/auth-context";
 import { Logo } from "@/components/brand/Logo";
+import { RecordPurchaseButton } from "@/components/purchases/RecordPurchaseButton";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
@@ -9,7 +10,12 @@ import { UserAvatar } from "./UserAvatar";
 
 type NavItem = { to: string; label: string; icon: LucideIcon; end?: boolean };
 
-const userNav: NavItem[] = [{ to: "/dashboard", label: "Overview", icon: LayoutDashboard, end: true }];
+const userNav: NavItem[] = [
+  { to: "/dashboard", label: "Overview", icon: LayoutDashboard, end: true },
+  { to: "/leaderboard", label: "Leaderboard", icon: Trophy },
+  { to: "/bills", label: "Bills", icon: CalendarRange },
+  { to: "/purchases", label: "Purchases", icon: Receipt },
+];
 const adminNav: NavItem[] = [{ to: "/admin/users", label: "People", icon: Users }];
 
 /** Header with navigation for every logged-in page */
@@ -41,10 +47,11 @@ export function AppShell() {
       <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-md">
         <Container className="flex h-16 items-center gap-6">
           <Logo wordmarkClassName="max-sm:sr-only" />
-          <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+          <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
             {links}
           </nav>
           <div className="ml-auto flex items-center gap-3">
+            <RecordPurchaseButton size="lg" className="max-sm:hidden" />
             <div className="flex items-center gap-2.5">
               <UserAvatar user={user} />
               <div className="hidden text-sm leading-tight sm:block">
@@ -59,7 +66,7 @@ export function AppShell() {
           </div>
         </Container>
         {/* Phones: navigation sits on its own scrollable row */}
-        <nav aria-label="Main" className="border-t border-border md:hidden">
+        <nav aria-label="Main" className="border-t border-border lg:hidden">
           <Container className="flex gap-1 overflow-x-auto py-2">{links}</Container>
         </nav>
       </header>

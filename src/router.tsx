@@ -30,6 +30,10 @@ export const router = createBrowserRouter([
             lazy: async () => ({ Component: (await import("@/components/layout/AppShell")).AppShell }),
             children: [
               { path: "/dashboard", lazy: page(() => import("@/pages/DashboardPage")) },
+              { path: "/leaderboard", lazy: page(() => import("@/pages/LeaderboardPage")) },
+              { path: "/bills", lazy: page(() => import("@/pages/BillsPage")) },
+              { path: "/purchases", lazy: page(() => import("@/pages/PurchasesPage")) },
+              { path: "/purchases/new", lazy: page(() => import("@/pages/NewPurchasePage")) },
               {
                 element: <RequireAuth role="ADMIN" />,
                 children: [

@@ -25,7 +25,21 @@ export const router = createBrowserRouter([
       { path: "/reset-password", lazy: page(() => import("@/pages/auth/ResetPasswordPage")) },
       {
         element: <RequireAuth />,
-        children: [{ path: "/dashboard", lazy: page(() => import("@/pages/DashboardPage")) }],
+        children: [
+          {
+            lazy: async () => ({ Component: (await import("@/components/layout/AppShell")).AppShell }),
+            children: [
+              { path: "/dashboard", lazy: page(() => import("@/pages/DashboardPage")) },
+              {
+                element: <RequireAuth role="ADMIN" />,
+                children: [
+                  { path: "/admin/users", lazy: page(() => import("@/pages/admin/AdminUsersPage")) },
+                  { path: "/admin/users/:id", lazy: page(() => import("@/pages/admin/AdminUserPage")) },
+                ],
+              },
+            ],
+          },
+        ],
       },
       { path: "*", lazy: page(() => import("@/pages/NotFoundPage")) },
     ],

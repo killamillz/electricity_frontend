@@ -1,31 +1,38 @@
-import { LogOut } from "lucide-react";
+import { Link } from "react-router";
+import { ArrowRight, Users } from "lucide-react";
 import { displayName, useAuth } from "@/auth/auth-context";
-import { Logo } from "@/components/brand/Logo";
-import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/button";
+import { PageHeader } from "@/components/layout/PageHeader";
 
-// Placeholder until the layout and bills features are built
+// Bills and purchases for the logged-in user come in the next feature
 export default function DashboardPage() {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   if (!user) return null;
 
   return (
-    <div className="min-h-svh">
-      <header className="border-b border-border bg-card">
-        <Container className="flex h-16 items-center justify-between">
-          <Logo />
-          <Button variant="ghost" size="lg" onClick={signOut}>
-            <LogOut /> Log out
-          </Button>
-        </Container>
-      </header>
-      <Container className="py-12">
-        <p className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">
-          {user.role === "ADMIN" ? "Admin" : "Dashboard"}
-        </p>
-        <h1 className="mt-3 font-wide text-4xl font-black tracking-tight">Hi, {displayName(user)}</h1>
-        <p className="mt-3 max-w-md text-muted-foreground">Your bills and purchases will show here.</p>
-      </Container>
+    <div className="grid gap-8">
+      <PageHeader
+        eyebrow="Overview"
+        title={`Hi, ${displayName(user)}`}
+        description="Your bills and purchases will show here."
+      />
+
+      {user.role === "ADMIN" && (
+        <Link
+          to="/admin/users"
+          className="group flex items-center gap-5 rounded-3xl bg-ink p-6 text-paper transition-transform hover:-translate-y-0.5 sm:p-8"
+        >
+          <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-volt text-volt-foreground">
+            <Users className="size-5" />
+          </span>
+          <span className="flex-1">
+            <span className="block font-wide text-xl font-extrabold">Manage people</span>
+            <span className="mt-1 block text-sm text-paper/60">
+              See everyone, set monthly amounts and check their bills.
+            </span>
+          </span>
+          <ArrowRight className="size-5 text-volt transition-transform group-hover:translate-x-1" />
+        </Link>
+      )}
     </div>
   );
 }

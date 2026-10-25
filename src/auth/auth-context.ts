@@ -25,3 +25,7 @@ export const useAuth = () => {
 
 /** Display name for greetings: first name, else the part of the email before @ */
 export const displayName = (user: User) => user.firstName ?? user.email.split("@")[0];
+
+/** "Ada Obi", or the email if no name was given */
+export const fullName = (user: User) =>
+  [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email;

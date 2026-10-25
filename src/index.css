@@ -1,13 +1,32 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
+    /* Archivo (wide, heavy) for headings, IBM Plex for text and numbers */
+    --font-display: 'Archivo Variable', ui-sans-serif, sans-serif;
+    --font-heading: var(--font-display);
+    --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+    /* Brand colours */
+    --color-ink: var(--ink);
+    --color-ink-soft: var(--ink-soft);
+    --color-paper: var(--paper);
+    --color-volt: var(--volt);
+    --color-volt-foreground: var(--volt-foreground);
+
+    /* Bill statuses */
+    --color-paid: var(--paid);
+    --color-pending: var(--pending);
+    --color-late: var(--late);
+
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,82 +68,113 @@
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
+    --ink: oklch(0.19 0.012 265);
+    --ink-soft: oklch(0.25 0.014 265);
+    --paper: oklch(0.975 0.008 95);
+    --volt: oklch(0.9 0.185 106);
+    --volt-foreground: oklch(0.19 0.012 265);
+
+    --paid: oklch(0.6 0.15 152);
+    --pending: oklch(0.72 0.15 70);
+    --late: oklch(0.58 0.21 27);
+
+    --background: var(--paper);
+    --foreground: var(--ink);
+    --card: oklch(0.995 0.003 95);
+    --card-foreground: var(--ink);
+    --popover: oklch(0.995 0.003 95);
+    --popover-foreground: var(--ink);
+    --primary: var(--ink);
+    --primary-foreground: var(--paper);
+    --secondary: oklch(0.935 0.012 95);
+    --secondary-foreground: var(--ink);
+    --muted: oklch(0.935 0.012 95);
+    --muted-foreground: oklch(0.48 0.015 265);
+    --accent: oklch(0.935 0.012 95);
+    --accent-foreground: var(--ink);
+    --destructive: var(--late);
+    --border: oklch(0.885 0.012 95);
+    --input: oklch(0.86 0.012 95);
+    --ring: oklch(0.55 0.02 265);
+    --chart-1: var(--volt);
+    --chart-2: var(--paid);
+    --chart-3: var(--pending);
+    --chart-4: var(--late);
+    --chart-5: var(--ink);
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    --sidebar: var(--paper);
+    --sidebar-foreground: var(--ink);
+    --sidebar-primary: var(--ink);
+    --sidebar-primary-foreground: var(--paper);
+    --sidebar-accent: oklch(0.935 0.012 95);
+    --sidebar-accent-foreground: var(--ink);
+    --sidebar-border: oklch(0.885 0.012 95);
+    --sidebar-ring: oklch(0.55 0.02 265);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
+    --background: var(--ink);
+    --foreground: var(--paper);
+    --card: var(--ink-soft);
+    --card-foreground: var(--paper);
+    --popover: var(--ink-soft);
+    --popover-foreground: var(--paper);
+    --primary: var(--volt);
+    --primary-foreground: var(--volt-foreground);
+    --secondary: oklch(0.3 0.014 265);
+    --secondary-foreground: var(--paper);
+    --muted: oklch(0.3 0.014 265);
+    --muted-foreground: oklch(0.72 0.012 265);
+    --accent: oklch(0.3 0.014 265);
+    --accent-foreground: var(--paper);
+    --destructive: oklch(0.7 0.19 25);
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --ring: oklch(0.6 0.02 265);
+    --sidebar: var(--ink-soft);
+    --sidebar-foreground: var(--paper);
+    --sidebar-primary: var(--volt);
+    --sidebar-primary-foreground: var(--volt-foreground);
+    --sidebar-accent: oklch(0.3 0.014 265);
+    --sidebar-accent-foreground: var(--paper);
     --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --sidebar-ring: oklch(0.6 0.02 265);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+  }
   body {
-    @apply bg-background text-foreground;
-    }
+    @apply bg-background text-foreground antialiased;
+  }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
     }
+  }
+}
+
+@utility font-wide {
+  font-family: var(--font-display);
+  font-stretch: 118%;
+}
+
+/* Faint blueprint grid behind dark sections */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility bg-grid-light {
+  background-image:
+    linear-gradient(to right, oklch(0.19 0.012 265 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.19 0.012 265 / 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
